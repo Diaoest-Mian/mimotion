@@ -395,7 +395,7 @@ if __name__ == "__main__":
             elif str(step) == '0':
                 step = ''
             push_msg += main(user, passwd, step) + '\n'
-
+        to_push = ToPush(pkey, push_msg)
         push = {
             'wx': to_push.to_push_wx,
             'nwx': to_push.to_push_server,
@@ -405,7 +405,7 @@ if __name__ == "__main__":
             'off': to_push.no_push
         }
 
-        to_push = ToPush(pkey, push_msg)
+
         print(Pm)
         try:
             push[Pm]()
