@@ -306,10 +306,11 @@ class ToPush:
     推送接口类
     处理pkey并转发推送消息到推送函数
     """
-    push_msg = push_msg
+    # push_msg = push_msg
 
-    def __init__(self, _pkey):
+    def __init__(self, _pkey, _msg):
         self.pkey = _pkey
+        self.push_msg = _msg
 
     def to_push_wx(self):
         """
@@ -372,7 +373,7 @@ if __name__ == "__main__":
     Pm = sys.argv[1]
     pkey = sys.argv[2]
 
-    to_push = ToPush(pkey)
+    
 
     # 用户名（格式为 13800138000）
     user = sys.argv[3]
@@ -403,6 +404,9 @@ if __name__ == "__main__":
             'pp': to_push.to_push_pushplus,
             'off': to_push.no_push
         }
+
+        to_push = ToPush(pkey, push_msg)
+        print(Pm)
         try:
             push[Pm]()
         except KeyError:
