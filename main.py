@@ -492,8 +492,9 @@ class ToPush:
     """
     push_msg: str
 
-    def __init__(self, _pkey):
+    def __init__(self, _pkey, _msg):
         self.pkey = _pkey
+        self.push_msg = _msg
 
     def to_push_wx(self):
         """
@@ -558,7 +559,7 @@ if __name__ == "__main__":
         Pm = sys.argv[1]
         pkey = sys.argv[2]
 
-        to_push = ToPush(pkey)
+        
 
         # 用户名（格式为 13800138000）
         user = sys.argv[3]
@@ -583,7 +584,7 @@ if __name__ == "__main__":
             elif str(step) == '0':
                 step = ''
             push_msg += main(user, passwd, step) + '\n'
-
+        to_push = ToPush(pkey, push_msg)
         push = {
             'wx': to_push.to_push_wx,
             'nwx': to_push.to_push_server,
